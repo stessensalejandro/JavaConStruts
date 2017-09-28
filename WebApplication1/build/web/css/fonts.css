@@ -1,0 +1,41 @@
+@font-face {
+ font-family: fuente_percolator;
+ src: url('Percolator_Bold.eot');
+ src:url('Percolator_Bold.eot?#iefix') format('embedded-opentype');/* EOT file for IE */
+      font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+ font-family: fuente_percolator;
+ src: url('Percolator_Bold.ttf') format('truetype'); /* TTF file for CSS3 browsers */
+      font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+ font-family: fuente_happy;
+ src: url('Happy.eot');
+ src:url('Happy.eot?#iefix') format('embedded-opentype');/* EOT file for IE */
+      font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+ font-family: fuente_happy;
+ src: url('Happy.ttf') format('truetype'); /* TTF file for CSS3 browsers */
+      font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+ font-family: fuente_pussycat;
+ src: url('Pussycat.eot');
+ src:url('Pussycat.eot?#iefix') format('embedded-opentype');/* EOT file for IE */
+      font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+ font-family: fuente_pussycat;
+ src: url('Pussycat.ttf') format('truetype'); /* TTF file for CSS3 browsers */
+      font-weight: normal;
+    font-style: normal;
+}

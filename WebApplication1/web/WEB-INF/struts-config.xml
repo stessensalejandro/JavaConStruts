@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+
+<struts-config>
+    <form-beans>
+        <form-bean name="NombreForm" type="Forms.NombreForm"/>
+        <form-bean name="EquipoForm" type="Forms.EquipoForm"/>
+        <form-bean name="LoginForm" type="Forms.LoginForm"/>
+         
+        
+     </form-beans>
+    
+    <global-exceptions>
+    
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="welcome"  path="/Welcome.do"/>
+    </global-forwards>
+
+    <action-mappings>
+        
+        <action path="/mostrarEquipos" type="Actions.mostrarEquipos" scope="session">
+             <forward name="success" path="/login.jsp" />
+        </action>
+        
+        <action input="/login.jsp" name="LoginForm" path="/Login" scope="session" type="Actions.LoginAction">
+            <forward name="success" path="/equipoAgregado.jsp" />
+            <forward name="failure" path="/failure.jsp" />
+        </action>
+        
+         <action input="/AgregarAction" name="EquipoForm" path="/agregar" validate="true" scope="session" type="Actions.AgregarAction">
+           <forward name="success" path="/equipoAgregado.jsp"/>
+           <forward name="failure" path="/failure.jsp" />
+        </action>
+        
+        <action input="/BorrarAction" name="IdForm" path="/borrar" scope="session" validate="true" type="Actions.BorrarAction">
+           <forward name="success" path="/equipoAgregado.jsp"/>
+           <forward name="failure" path="/failure.jsp" />
+        </action>
+        
+        <action input="/BorrarPorEquipoAction" name="NombreForm" path="/borrarPorEquipo" scope="session" type="Actions.BorrarPorEquipoAction">
+           <forward name="success" path="/equipoAgregado.jsp"/>
+           <forward name="failure" path="/equipoAgregado.jsp" />
+        </action>
+        
+        
+        
+        <action path="/administrar" scope="session" type="Actions.VolverAction" >
+               <forward name="success" path="/equipoAgregado.jsp"/>
+               <forward name="failure" path="/failure.jsp" />
+        </action>
+        
+        <action path="/sesion" type="SesionAction">
+               <forward name="success" path="/sesion.jsp"/>
+               <forward name="failure" path="/index.jsp" />
+        </action>
+        
+        
+        <action input="/" name="EquipoForm" path="/muestra" scope="session" type="Actions.nuevo"/>
+        <action input="/" name="NewStrutsActionForm" path="/Principal" scope="session" type="Actions.mostrarEquipos"/>
+                 
+        <action path="/volver" forward="/login.jsp"/>
+        <action path="/insertar" forward="/equipoAgregado.jsp"/>     
+        <action path="/Welcome" forward="/welcomeStruts.jsp"/>  
+               
+        
+        
+        
+      
+        
+          
+        <action input="/" name="NewStrutsActionForm" path="/sesion" scope="session" type="Actions.SesionAction"/>
+        
+        <action input="/" name="NewStrutsActionForm" path="/administrar" scope="session" type="Actions.VolverAction"/>
+        
+        <action input="/" name="LoginForm" path="/validateLogin" scope="session" type="Actions.AgregarAction"/>
+        <action path="/Welcome" forward="/welcomeStruts.jsp"/>
+        
+        
+        
+    </action-mappings>
+    
+    <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/>
+
+    <message-resources parameter="com/vaannila/ApplicationResource"/>
+    
+    <!-- ========================= Tiles plugin ===============================-->
+    <!--
+    This plugin initialize Tiles definition factory. This later can takes some
+    parameters explained here after. The plugin first read parameters from
+    web.xml, thenoverload them with parameters defined here. All parameters
+    are optional.
+    The plugin should be declared in each struts-config file.
+    - definitions-config: (optional)
+    Specify configuration file names. There can be several comma
+    separated file names (default: ?? )
+    - moduleAware: (optional - struts1.1)
+    Specify if the Tiles definition factory is module aware. If true
+    (default), there will be one factory for each Struts module.
+    If false, there will be one common factory for all module. In this
+    later case, it is still needed to declare one plugin per module.
+    The factory will be initialized with parameters found in the first
+    initialized plugin (generally the one associated with the default
+    module).
+    true : One factory per module. (default)
+    false : one single shared factory for all modules
+    - definitions-parser-validate: (optional)
+    Specify if xml parser should validate the Tiles configuration file.
+    true : validate. DTD should be specified in file header (default)
+    false : no validation
+
+    Paths found in Tiles definitions are relative to the main context.
+    -->
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+        <set-property property="definitions-config" value="/WEB-INF/tiles-defs.xml" />
+        <set-property property="moduleAware" value="true" />
+    </plug-in>
+    
+    <!-- ========================= Validator plugin ================================= -->
+    <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+        <set-property
+            property="pathnames"
+            value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/>
+    </plug-in>
+  
+</struts-config>
